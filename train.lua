@@ -5,6 +5,12 @@ require 'optim'
 require 'LanguageModel'
 require 'util.DataLoader'
 
+th train.lua -gpuid -1
+th train.lua -data_dir data/some_folder -rnn_size 512 -num_layers 2 -dropout 0.5
+th sample.lua cv/some_checkpoint.t7 -gpuid -1
+th convert_gpu_cpu_checkpoint.lua cv/lm_lstm_epoch30.00_1.3950.t7
+
+
 local utils = require 'util.utils'
 local unpack = unpack or table.unpack
 
